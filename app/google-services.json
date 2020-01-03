@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "575940804803",
+    "firebase_url": "https://gps-tour-5b68d.firebaseio.com",
+    "project_id": "gps-tour-5b68d",
+    "storage_bucket": "gps-tour-5b68d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575940804803:android:ff89edb6f8a9cafca26276",
+        "android_client_info": {
+          "package_name": "com.example.gpstour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575940804803-2g3qse0pvj64pshh66vj6ucavps6rdkd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gpstour",
+            "certificate_hash": "ba8997738015b00f25a3332bfbc04cfc855154fe"
+          }
+        },
+        {
+          "client_id": "575940804803-i342v2s83sf4ss6urh8k9ougjs61d3s5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpbCiyT8X-RqQan718Afp2-NR15t_R1Xc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575940804803-i342v2s83sf4ss6urh8k9ougjs61d3s5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
