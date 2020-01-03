@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         }else{
-            Toast.makeText(getApplicationContext(), "Ingresa tu foto de perfil", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Ingresa tu foto de perfil, por favor", Toast.LENGTH_LONG).show();
         }
 
     }
