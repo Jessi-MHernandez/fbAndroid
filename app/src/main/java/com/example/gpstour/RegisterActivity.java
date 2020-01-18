@@ -32,17 +32,10 @@ import java.util.Random;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RegisterActivity extends AppCompatActivity {
-
-    EditText e1_email, e2_password, e3_name;
-    CircleImageView e4_profile;
-
+    EditText e1_email;
     FirebaseAuth auth;
     ProgressDialog dialog;
-    FirebaseStorage storage;
-    FirebaseDatabase database;
 
-    Uri resultUri;
-    Date myDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,110 +43,37 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         e1_email = (EditText)findViewById(R.id.regEmail);
-        e2_password = (EditText)findViewById(R.id.regPass);
-        e3_name= (EditText)findViewById(R.id.regName);
-        e4_profile = (CircleImageView)findViewById(R.id.profileImage);
-
         auth = FirebaseAuth.getInstance();
-        storage = FirebaseStorage.getInstance();
-        database = FirebaseDatabase.getInstance();
-
         dialog = new ProgressDialog(this);
-
     }
 
+    public void irPasswordActivity(View v){
 
-    public void generarCode(View v){
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a", Locale.getDefault());
-        String date = format1.format(myDate);
-        Random r = new Random();
+        dialog.setMessage("Verificando correo electrónico");
+        dialog.show();
+        //comprobar si el correo esta ya esta registrado o no
+        auth.fetchSignInMethodsForEmail(e1_email.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
 
-        int n = 100000 + r.nextInt(900000);
-        String code = String.valueOf(n);
+                        if(task.isSuccessful()){
+                            dialog.dismiss();
+                            boolean check = !task.getResult().getSignInMethods().isEmpty();
 
-        if(resultUri!=null){
-            Intent myIntent = new Intent(RegisterActivity.this, InviteCodeActivity.class);
+                            if(!check){
+                                // el correo electrónico no existe, por lo que podemos crear este correo electrónico con el usuario
+                                Intent myIntent = new Intent(RegisterActivity.this,PasswordActivity.class);
+                                myIntent.putExtra("email", e1_email.getText().toString());
+                                startActivity(myIntent);
 
-/*
-            Map<String, Object> datosUser = new HashMap<>();
-            datosUser.put("email",e1_email.getText().toString());
-            datosUser.put("password", e2_password.getText().toString());
-            datosUser.put("name",e3_name.getText().toString());
-            datosUser.put("date", date);
-            datosUser.put("isSharing", "false");
-            datosUser.put("code", code);
-            datosUser.put("imageUri",resultUri);
-
-*/
-            myIntent.putExtra("email", e1_email.getText().toString());
-            myIntent.putExtra("password",e2_password.getText().toString());
-            myIntent.putExtra("name", e3_name.getText().toString());
-            myIntent.putExtra("date", date);
-            myIntent.putExtra("isSharing", "false");
-            myIntent.putExtra("code", code);
-            myIntent.putExtra("imageUri", resultUri);
-
-
-            startActivity(myIntent);
-
-
-        }else{
-            Toast.makeText(getApplicationContext(), "Ingresa tu foto de perfil, por favor", Toast.LENGTH_LONG).show();
-        }
-
+                            }else{
+                                dialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Este correo electrónico ya está registrado", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
     }
-
-            /*
-
-            myIntent.putExtra("email", e1_email.getText().toString());
-            myIntent.putExtra("password",e2_password.getText().toString());
-            myIntent.putExtra("name", e3_name.getText().toString());
-            myIntent.putExtra("date", date);
-            myIntent.putExtra("isSharing", "false");
-            myIntent.putExtra("code", code);
-            myIntent.putExtra("imageUri", resultUri);
-
-            startActivity(myIntent);
-
-
-        }else{
-            Toast.makeText(getApplicationContext(), "Ingresa tu foto de perfil", Toast.LENGTH_LONG).show();
-        }
-
-    }
-
-*/
-    public void selectImage(View v){
-        Intent i = new Intent();
-        i.setAction(Intent.ACTION_GET_CONTENT);
-        i.setType("image/*");
-        startActivityForResult(i,12);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == 12  && resultCode == RESULT_OK && data!=null){
-            CropImage.activity()
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setAspectRatio(1,1)
-                    .start(this);
-        }
-
-        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-            if(resultCode == RESULT_OK){
-                resultUri = result.getUri();
-                e4_profile.setImageURI(resultUri);
-                //Uri resultUri = result.getUri();
-            }
-            else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
-                Exception error = result.getError();
-            }
-
-        }
-    }
-
-
 }
 

@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tV1"
+        android:id="@+id/textView1"
         android:layout_marginTop="106dp"
         android:text="xxxxxx"
         android:textSize="24sp"
@@ -23,13 +23,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tV2"
-        android:layout_below="@id/tV1"
+        android:layout_below="@id/textView1"
         android:layout_marginTop="48dp"
         android:gravity="center"
         android:text="Comparte este codigo con tus amigos"/>
 
     <Button
-        android:id="@+id/btnAceptar"
+        android:id="@+id/btnRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tV2"
@@ -42,5 +42,6 @@
         android:layout_marginTop="89dp"
         android:layout_marginEnd="153dp"
         android:layout_marginRight="153dp"
+        android:onClick="registerUser"
         android:text="Registrar" />
 </RelativeLayout>

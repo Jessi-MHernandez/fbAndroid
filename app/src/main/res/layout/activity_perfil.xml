@@ -26,7 +26,7 @@
         app:boxStrokeColor="@color/colorPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/RegName"
+            android:id="@+id/regName"
             android:layout_width="match_parent"
             android:layout_height="62dp"
             android:inputType="text" />

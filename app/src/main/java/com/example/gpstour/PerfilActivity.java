@@ -27,12 +27,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
         Uri resultUri;
         Date myDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        e3_name = (EditText)findViewById(R.id.RegName);
+        e3_name = (EditText)findViewById(R.id.regName);
         circleImageView = (CircleImageView)findViewById(R.id.circleImageView);
 
         Intent myIntent = getIntent();
@@ -45,6 +46,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
     }
 
     public void generarCode(View v){
+       // Date myDate = new Date();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a", Locale.getDefault());
         String date = format1.format(myDate);
         Random r = new Random();
@@ -94,14 +96,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
                 if(resultCode == RESULT_OK){
                     resultUri = result.getUri();
                     //Uri resultUri = result.getUri();
+                    circleImageView.setImageURI(resultUri);
                 }
                 else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
                     Exception error = result.getError();
                 }
 
             }
-        }
-
-
 
     }
+}

@@ -11,25 +11,25 @@ import android.widget.Toast;
 public class PasswordActivity extends AppCompatActivity {
 
     String email;
-    EditText e2_pass;
+    EditText e2_password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
 
-        e2_pass = (EditText)findViewById(R.id.RegPass);
+        e2_password = (EditText)findViewById(R.id.RegPass);
 
-        Intent myIntent01 = getIntent();
-        if(myIntent01 != null){
-            email = myIntent01.getStringExtra("email");
+        Intent myIntent = getIntent();
+        if(myIntent != null){
+            email = myIntent.getStringExtra("email");
         }
     }
 
-    public  void irPerfil(View v){
-        if(e2_pass.getText().toString().length() >6 ){
+    public  void irPerfilActivity(View v){
+        if(e2_password.getText().toString().length() >6 ){
             Intent myIntent = new Intent(PasswordActivity.this, PerfilActivity.class);
             myIntent.putExtra("email", email);
-            myIntent.putExtra("password", e2_pass.getText().toString());
+            myIntent.putExtra("password", e2_password.getText().toString());
             startActivity(myIntent);
         }
         else{
