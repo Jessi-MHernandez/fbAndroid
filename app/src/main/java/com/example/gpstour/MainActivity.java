@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(myIntent);
         }
 
+        //registrar nuevo usuario
         public void  irRegistrarse(View v){
             Intent myIntent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(myIntent);

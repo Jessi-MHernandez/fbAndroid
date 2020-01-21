@@ -44,6 +44,39 @@ import de.hdodenhof.circleimageview.CircleImageView;
         }
 
     }
+
+
+    //generar codigo de excursion aleatorio
+    public void generarCode(View v){
+       // Date myDate = new Date();
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a", Locale.getDefault());
+        String date = format1.format(myDate);
+        Random r = new Random();
+
+        int n = 100000 + r.nextInt(900000);
+        String code = String.valueOf(n);
+
+        if(resultUri!=null){
+            Intent myIntent = new Intent(PerfilActivity.this, InviteCodeActivity.class);
+            myIntent.putExtra("name", e3_name.getText().toString());
+            myIntent.putExtra("email", email);
+            myIntent.putExtra("password",password);
+            myIntent.putExtra("date", date);
+            myIntent.putExtra("isSharing", "false");
+            myIntent.putExtra("code", code);
+            myIntent.putExtra("imageUri", resultUri);
+
+            startActivity(myIntent);
+            finish();
+
+
+        }else{
+            Toast.makeText(getApplicationContext(), "Ingresa tu foto de perfil", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    //seleccionar imagen de perfil
         public void selectImage(View v){
             Intent i = new Intent();
             i.setAction(Intent.ACTION_GET_CONTENT);
@@ -75,34 +108,5 @@ import de.hdodenhof.circleimageview.CircleImageView;
             }
 
         }
-
-    public void generarCode(View v){
-       // Date myDate = new Date();
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a", Locale.getDefault());
-        String date = format1.format(myDate);
-        Random r = new Random();
-
-        int n = 100000 + r.nextInt(900000);
-        String code = String.valueOf(n);
-
-        if(resultUri!=null){
-            Intent myIntent = new Intent(PerfilActivity.this, InviteCodeActivity.class);
-            myIntent.putExtra("name", e3_name.getText().toString());
-            myIntent.putExtra("email", email);
-            myIntent.putExtra("password",password);
-            myIntent.putExtra("date", date);
-            myIntent.putExtra("isSharing", "false");
-            myIntent.putExtra("code", code);
-            myIntent.putExtra("imageUri", resultUri);
-
-            startActivity(myIntent);
-            finish();
-
-
-        }else{
-            Toast.makeText(getApplicationContext(), "Ingresa tu foto de perfil", Toast.LENGTH_LONG).show();
-        }
-
-    }
 
 }
