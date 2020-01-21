@@ -1,10 +1,11 @@
 package com.example.gpstour;
 
 public class CreateUser {
+
+    public CreateUser(){
+
+    }
     public String name;
-    public String email;
-    public String password;
-    public String code;
 
     public CreateUser(String name, String email, String password, String code, String issharing, String lat, String lng, String imageUri) {
         this.name = name;
@@ -16,6 +17,10 @@ public class CreateUser {
         this.lng = lng;
         this.imageUri = imageUri;
     }
+
+    public String email;
+    public String password;
+    public String code;
 
     public String issharing;
     public String lat;

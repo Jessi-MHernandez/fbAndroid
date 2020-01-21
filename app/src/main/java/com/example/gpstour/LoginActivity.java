@@ -3,6 +3,7 @@ package com.example.gpstour;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -35,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getApplicationContext(), "Usuario logueado", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(LoginActivity.this,MyNavigationActivity.class);
+                            startActivity(i);
                         }else {
                             Toast.makeText(getApplicationContext(), "Email o contraseña incorrecta", Toast.LENGTH_LONG).show();
                         }

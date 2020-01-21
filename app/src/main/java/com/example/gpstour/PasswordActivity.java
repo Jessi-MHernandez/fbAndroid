@@ -31,6 +31,7 @@ public class PasswordActivity extends AppCompatActivity {
             myIntent.putExtra("email", email);
             myIntent.putExtra("password", e2_password.getText().toString());
             startActivity(myIntent);
+            finish();
         }
         else{
             Toast.makeText(getApplicationContext(), "La contraseña debe ser mayor a 6 caracteres", Toast.LENGTH_LONG).show();

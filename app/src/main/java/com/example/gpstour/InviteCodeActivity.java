@@ -76,6 +76,9 @@ public class InviteCodeActivity extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 progressDialog.dismiss();
                                                 Toast.makeText(getApplicationContext(),"Usuario registrado",Toast.LENGTH_LONG).show();
+                                                finish();
+                                                Intent myIntent = new Intent(InviteCodeActivity.this,MyNavigationActivity.class);
+                                                startActivity(myIntent);
                                             }
                                             else{
                                                 progressDialog.dismiss();
